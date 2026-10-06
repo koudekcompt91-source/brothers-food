@@ -1,4 +1,4 @@
-import { RESTAURANT } from "@/data/config";
+import { WHATSAPP_NUMBER } from "@/data/config";
 import type { Order } from "@/types";
 
 // Future-ready: generates a WhatsApp order message. No real number is configured yet.
@@ -20,7 +20,7 @@ export function generateWhatsAppOrder(order: Order): string {
     `Total: ${order.total} DA`,
     ...(order.notes ? [`Notes: ${order.notes}`] : []),
   ];
-  const url = `https://wa.me/${RESTAURANT.whatsappNumber}?text=${encodeURIComponent(
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     lines.join("\n"),
   )}`;
   return url;

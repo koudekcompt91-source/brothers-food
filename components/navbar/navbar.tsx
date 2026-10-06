@@ -61,6 +61,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3">
             <button
+              id="cart-trigger"
               onClick={openCart}
               aria-label="Open cart"
               className="relative p-2 text-white hover:text-orange transition-colors"

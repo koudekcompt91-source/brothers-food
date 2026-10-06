@@ -7,6 +7,7 @@ import type { Product } from "@/types";
 import { formatPrice } from "@/data/config";
 import { useCart } from "@/lib/cart";
 import ProductMedia from "@/components/food/product-media";
+import { flyToCart } from "@/lib/fly-to-cart";
 
 interface ProductCardProps {
   product: Product;
@@ -56,6 +57,7 @@ export default function ProductCard({
   const quickAdd = (e: MouseEvent) => {
     e.stopPropagation();
     addItem({ product, qty: 1, size: "regular", extras: [] });
+    flyToCart((e.currentTarget as HTMLElement).getBoundingClientRect());
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1200);
     window.setTimeout(openCart, 350);

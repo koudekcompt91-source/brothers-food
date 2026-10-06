@@ -9,7 +9,7 @@ import { BurgerVisual, CheeseBit, FriesVisual, OnionBit, SauceBit } from "@/comp
 import { useCanParallax } from "@/lib/use-can-parallax";
 import MagneticButton from "@/components/ui/magnetic-button";
 
-const NOTES = ["Double Beef", "Special Sauce", "Cheese"];
+const NOTES = ["Double Beef", "Special Brothers Sauce", "Cheese"];
 
 export default function FeaturedProduct() {
   const product = getProductById("burger-01");

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-type CursorMode = "default" | "button" | "view";
+type CursorMode = "default" | "button" | "view" | "explore";
 
 export default function CustomCursor() {
   const [mode, setMode] = useState<CursorMode>("default");
@@ -29,7 +29,8 @@ export default function CustomCursor() {
       setVisible(true);
       const t = e.target as HTMLElement | null;
       if (!t || typeof t.closest !== "function") return;
-      if (t.closest("[data-cursor='view']")) setMode("view");
+      if (t.closest("[data-cursor='explore']")) setMode("explore");
+      else if (t.closest("[data-cursor='view']")) setMode("view");
       else if (t.closest("a, button, [role='button'], input, select, textarea, [data-cursor='button']")) setMode("button");
       else setMode("default");
     };
@@ -48,17 +49,19 @@ export default function CustomCursor() {
       <motion.div
         className="flex items-center justify-center rounded-full bg-orange"
         animate={{
-          width: mode === "view" ? 84 : mode === "button" ? 52 : 12,
-          height: mode === "view" ? 84 : mode === "button" ? 52 : 12,
-          x: mode === "view" ? -42 : mode === "button" ? -26 : -6,
-          y: mode === "view" ? -42 : mode === "button" ? -26 : -6,
+          width: mode === "default" ? 12 : mode === "button" ? 52 : 84,
+          height: mode === "default" ? 12 : mode === "button" ? 52 : 84,
+          x: mode === "default" ? -6 : mode === "button" ? -26 : -42,
+          y: mode === "default" ? -6 : mode === "button" ? -26 : -42,
           backgroundColor: mode === "default" ? "#ff6a00" : "rgba(255,106,0,0.9)",
         }}
         transition={{ type: "spring", stiffness: 400, damping: 28 }}
         style={{ position: "absolute" }}
       >
-        {mode === "view" && (
-          <span className="font-display text-black text-xs tracking-widest">VIEW</span>
+        {(mode === "view" || mode === "explore") && (
+          <span className="font-display text-[11px] tracking-widest text-black">
+            {mode === "explore" ? "EXPLORE" : "VIEW"}
+          </span>
         )}
       </motion.div>
     </motion.div>

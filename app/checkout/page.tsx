@@ -18,6 +18,7 @@ export default function CheckoutPage() {
   const [city, setCity] = useState("");
   const [notes, setNotes] = useState("");
   const [done, setDone] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(null);
   const deliveryFee = type === "delivery" ? RESTAURANT.deliveryFee : 0;
   const total = subtotal + deliveryFee;
 
@@ -26,7 +27,8 @@ export default function CheckoutPage() {
   async function submit(e: FormEvent) {
     e.preventDefault();
     if (disabled) return;
-    await ordersService.create({ customer: name, phone, address: type === "delivery" ? address : undefined, city, type, items, notes });
+    const order = await ordersService.create({ customer: name, phone, address: type === "delivery" ? address : undefined, city, type, items, notes });
+    setOrderId(order.id);
     clear();
     setDone(true);
   }
@@ -48,11 +50,14 @@ export default function CheckoutPage() {
             <CheckCircle2 className="mx-auto text-orange" size={74} strokeWidth={1.5} />
           </motion.div>
           <p className="mt-6 font-display text-xs tracking-[0.3em] text-orange">ORDER RECEIVED</p>
-          <h1 className="headline mt-3 text-[clamp(3.2rem,9vw,7rem)] leading-[0.85] text-white">
-            YOUR ORDER
+          <h1 className="headline mt-3 text-[clamp(2.8rem,8vw,6rem)] leading-[0.85] text-white">
+            YOUR BROTHERS
             <br />
-            <span className="text-orange">IS ON ITS WAY.</span>
+            <span className="text-orange">ARE ON IT.</span>
           </h1>
+          {orderId && (
+            <p className="mt-6 font-display text-xl tracking-[0.2em] text-white">ORDER {orderId}</p>
+          )}
           <Link href="/menu" className="mt-8 inline-flex bg-orange px-8 py-4 font-display text-black transition-colors hover:bg-white">
             BACK TO MENU →
           </Link>
@@ -77,7 +82,7 @@ export default function CheckoutPage() {
                   className="mt-2 w-full bg-black/40 border border-white/10 px-4 py-3 text-white outline-none focus:border-orange" />
               </label>
               <label>
-                <span className="font-display text-white/50 text-xs tracking-[0.2em]">PHONE</span>
+                <span className="font-display text-xs tracking-[0.2em] text-white/50">PHONE NUMBER</span>
                 <input value={phone} onChange={(e) => setPhone(e.target.value)}
                   className="mt-2 w-full bg-black/40 border border-white/10 px-4 py-3 text-white outline-none focus:border-orange" />
               </label>

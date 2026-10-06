@@ -11,6 +11,7 @@ export const BRAND = {
 export const RESTAURANT = {
   // Placeholders — replace with real info before launch
   phone: "+213 (0) 00 00 00 00",
+  /** Placeholder only. Replace with a real WhatsApp number before launch. */
   whatsappNumber: "213000000000", // digits only, country code, no '+'
   address: "123 Brothers Street, Your City",
   city: "Your City",
@@ -23,6 +24,9 @@ export const RESTAURANT = {
   tiktok: "https://tiktok.com/@brothersfood",
   email: "hello@brothersfood.com",
 } as const;
+
+/** Configurable WhatsApp target. Not a real restaurant number. */
+export const WHATSAPP_NUMBER = RESTAURANT.whatsappNumber;
 
 export const NAV_LINKS = [
   { label: "HOME", href: "/" },

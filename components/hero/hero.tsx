@@ -10,7 +10,6 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { BRAND } from "@/data/config";
 import MagneticButton from "@/components/ui/magnetic-button";
 import { BurgerVisual, CheeseBit, FriesVisual, OnionBit, SauceBit } from "@/components/food/food-visuals";
 import { useCanParallax } from "@/lib/use-can-parallax";
@@ -70,10 +69,10 @@ export default function Hero() {
           <motion.p
             initial={reduce ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.4 }}
             className="mb-3 font-display text-xs tracking-[0.3em] text-black/70 md:text-sm"
           >
-            EST. BY TWO BROTHERS · FAST FOOD DONE RIGHT
+            BROTHERS FOOD
           </motion.p>
           <h1 className="headline text-[clamp(3.6rem,8vw,7.4rem)] leading-[0.84] text-white">
             <span className="block overflow-hidden">
@@ -81,7 +80,7 @@ export default function Hero() {
                 className="block"
                 initial={reduce ? false : { y: "105%" }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
                 BROTHERS
               </motion.span>
@@ -91,7 +90,7 @@ export default function Hero() {
                 className="block"
                 initial={reduce ? false : { y: "105%" }}
                 animate={{ y: 0 }}
-                transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
                 FOOD
               </motion.span>
@@ -100,15 +99,25 @@ export default function Hero() {
           <motion.p
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.16, duration: 0.45 }}
+            transition={{ delay: 0.34, duration: 0.45 }}
             className="mt-4 font-display text-lg tracking-wide text-black md:text-2xl"
           >
-            {BRAND.tagline}
+            GOOD FOOD.
+            <br />
+            GOOD MOOD.
+          </motion.p>
+          <motion.p
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.46, duration: 0.45 }}
+            className="mt-3 max-w-md text-base text-black/75 md:text-lg"
+          >
+            Choose your favorite. Build your order. Enjoy the Brothers experience.
           </motion.p>
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.24, duration: 0.45 }}
+            transition={{ delay: 0.62, duration: 0.45 }}
             className="mt-8 hidden flex-wrap items-center gap-4 lg:flex"
           >
             <MagneticButton href="/menu" className="bg-black px-8 py-4 text-base text-white hover:bg-navy">
@@ -126,26 +135,58 @@ export default function Hero() {
         <div className="relative">
           <motion.div
             aria-hidden
+            initial={reduce ? false : { opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7, duration: 0.55 }}
             style={parallax ? { x: bitX, y: bitY } : undefined}
             className="absolute left-0 top-[6%] z-20 w-[28%] max-w-[150px]"
           >
-            <FriesVisual className="h-auto w-full drop-shadow-xl" />
+            <motion.div animate={reduce ? undefined : { y: [0, -10, 0], rotate: [-6, -2, -6] }} transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut" }}>
+              <FriesVisual className="h-auto w-full drop-shadow-xl" />
+            </motion.div>
           </motion.div>
-          <motion.div aria-hidden style={parallax ? { y: bitY } : undefined} className="absolute right-[4%] top-0 z-20 w-14 md:w-16">
-            <CheeseBit className="w-full" />
+          <motion.div
+            aria-hidden
+            initial={reduce ? false : { opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.82, duration: 0.5 }}
+            style={parallax ? { y: bitY, x: bitX } : undefined}
+            className="absolute right-[8%] top-[6%] z-20 w-14 md:w-16"
+          >
+            <motion.div animate={reduce ? undefined : { y: [0, -14, 0], rotate: [8, 14, 8] }} transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut" }}>
+              <CheeseBit className="w-full" />
+            </motion.div>
           </motion.div>
-          <motion.div aria-hidden style={parallax ? { y: bitY } : undefined} className="absolute bottom-[8%] left-[8%] z-20 hidden w-12 sm:block">
-            <OnionBit className="w-full" />
+          <motion.div
+            aria-hidden
+            initial={reduce ? false : { opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+            style={parallax ? { y: bitY } : undefined}
+            className="absolute bottom-[8%] left-[8%] z-20 hidden w-12 sm:block"
+          >
+            <motion.div animate={reduce ? undefined : { y: [0, 8, 0], rotate: [0, -8, 0] }} transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut" }}>
+              <OnionBit className="w-full" />
+            </motion.div>
           </motion.div>
-          <motion.div aria-hidden style={parallax ? { x: bitX, y: bitY } : undefined} className="absolute bottom-[14%] right-0 z-20 w-10">
-            <SauceBit className="w-full" />
+          <motion.div
+            aria-hidden
+            initial={reduce ? false : { opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.98, duration: 0.5 }}
+            style={parallax ? { x: bitX, y: bitY } : undefined}
+            className="absolute bottom-[16%] right-[6%] z-20 w-10"
+          >
+            <motion.div animate={reduce ? undefined : { y: [0, -8, 0] }} transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}>
+              <SauceBit className="w-full" />
+            </motion.div>
           </motion.div>
 
-          <motion.div style={reduce ? undefined : { y: foodY }}>
+          <motion.div style={reduce ? undefined : { y: foodY }} data-cursor="explore">
             <motion.div
               initial={reduce ? false : { opacity: 0, scale: 0.84, rotate: -16, y: 30 }}
               animate={{ opacity: 1, scale: 1, rotate: -7, y: 0 }}
-              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.42, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.div
                 style={parallax ? { x: burgerX, y: burgerY } : undefined}
@@ -164,7 +205,7 @@ export default function Hero() {
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.24, duration: 0.45 }}
+          transition={{ delay: 0.62, duration: 0.45 }}
           className="flex flex-wrap items-center gap-3 lg:hidden"
         >
           <MagneticButton href="/menu" className="bg-black px-7 py-4 text-base text-white hover:bg-navy">
