@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { getProductsByCategory } from "@/data/products";
+import { getProductById, getProductsByCategory } from "@/data/products";
 import type { Product } from "@/types";
 import { CrustyVisual } from "@/components/food/food-visuals";
 import ProductCard from "@/components/product-card/product-card";
@@ -12,6 +13,7 @@ import { useCanParallax } from "@/lib/use-can-parallax";
 
 export default function TastyCrustySection() {
   const items = getProductsByCategory("tasty-crusty");
+  const signature = getProductById("tasty-crusty-brothers");
   const [selected, setSelected] = useState<Product | null>(null);
   const reduce = useReducedMotion();
   const parallax = useCanParallax();
@@ -29,11 +31,22 @@ export default function TastyCrustySection() {
       />
       <div className="relative mx-auto grid max-w-shell items-center gap-10 px-5 md:px-10 lg:grid-cols-2">
         <motion.div style={reduce ? undefined : { y: foodY }} className="relative">
-          <CrustyVisual
-            label="Tasty Crusty box with crispy chicken and rice"
-            variant="brothers"
-            className="mx-auto h-auto w-full max-w-[560px] drop-shadow-[0_40px_50px_rgba(0,0,0,0.45)]"
-          />
+          {signature?.usePhoto ? (
+            <Image
+              src={signature.image}
+              alt="Tasty Crusty box with crispy chicken and rice"
+              width={1024}
+              height={851}
+              sizes="(max-width: 1024px) 100vw, 560px"
+              className="mx-auto h-auto w-full max-w-[560px] bg-transparent object-contain drop-shadow-[0_40px_50px_rgba(0,0,0,0.45)]"
+            />
+          ) : (
+            <CrustyVisual
+              label="Tasty Crusty box with crispy chicken and rice"
+              variant="brothers"
+              className="mx-auto h-auto w-full max-w-[560px] drop-shadow-[0_40px_50px_rgba(0,0,0,0.45)]"
+            />
+          )}
         </motion.div>
         <div>
           <p className="font-display text-xs tracking-[0.32em] text-orange">THE SIGNATURE BOX</p>

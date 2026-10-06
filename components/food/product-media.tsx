@@ -34,7 +34,7 @@ export default function ProductMedia({
         fill
         priority={priority}
         sizes={sizes ?? "(max-width: 768px) 100vw, 33vw"}
-        className={`object-cover ${className}`}
+        className={`bg-transparent object-contain ${className}`}
       />
     );
   }
