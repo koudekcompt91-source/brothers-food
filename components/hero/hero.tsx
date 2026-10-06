@@ -121,13 +121,13 @@ export default function Hero() {
             className="mt-8 hidden flex-wrap items-center gap-4 lg:flex"
           >
             <MagneticButton href="/menu" className="bg-black px-8 py-4 text-base text-white hover:bg-navy">
-              ORDER NOW
+              EXPLORE MENU →
             </MagneticButton>
             <MagneticButton
-              href="/menu"
+              href="/menu#menu"
               className="border-2 border-black px-8 py-4 text-base text-black hover:bg-black hover:text-white"
             >
-              VIEW MENU
+              ORDER NOW →
             </MagneticButton>
           </motion.div>
         </div>
@@ -209,13 +209,13 @@ export default function Hero() {
           className="flex flex-wrap items-center gap-3 lg:hidden"
         >
           <MagneticButton href="/menu" className="bg-black px-7 py-4 text-base text-white hover:bg-navy">
-            ORDER NOW
+            EXPLORE MENU →
           </MagneticButton>
           <MagneticButton
-            href="/menu"
+            href="/menu#menu"
             className="border-2 border-black px-7 py-4 text-base text-black hover:bg-black hover:text-white"
           >
-            VIEW MENU
+            ORDER NOW →
           </MagneticButton>
         </motion.div>
       </motion.div>

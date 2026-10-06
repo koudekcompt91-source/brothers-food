@@ -368,22 +368,43 @@ export function ComboVisual({ className, label }: VisualProps) {
   );
 }
 
+export function CrustyVisual({
+  className,
+  label,
+  variant = "original",
+}: VisualProps & { variant?: "original" | "cheese" | "spicy" | "brothers" }) {
+  const sauce = variant === "spicy" ? "#e23b2f" : "#ff6a00";
+  return (
+    <svg {...svgProps(label, className)}>
+      <ellipse cx="200" cy="430" rx="150" ry="16" fill="#000" opacity="0.28" />
+      <path d="M70 250h260l-24 150H94L70 250Z" fill="#111a35" />
+      <path d="M86 268h228l-16 118H102L86 268Z" fill="#1c2748" />
+      <ellipse cx="200" cy="300" rx="96" ry="28" fill="#f3e2c0" />
+      <ellipse cx="176" cy="294" rx="28" ry="10" fill="#fff6df" opacity="0.7" />
+      <path d="M118 250c18-46 40-62 52-40 8 16 22 8 30 24 14-40 48-36 58-8 8 22-6 40-16 48-28 10-70 4-96 14-18-10-36-24-28-38Z" fill="#e3922a" />
+      <path d="M210 236c16-36 42-28 48 4 4 20-10 36-22 42-16-8-30-22-26-46Z" fill="#f6c56b" />
+      <path d="M150 248c10-28 34-22 36 6 2 16-12 28-20 32-12-6-20-18-16-38Z" fill="#c56a10" />
+      {(variant === "cheese" || variant === "brothers") && (
+        <path d="M130 286c24 16 40-8 70 4 28 12 46-6 72 6" stroke="#ffc53d" strokeWidth="12" strokeLinecap="round" />
+      )}
+      <path d="M146 318c22 12 36-6 62 4 24 8 40-4 58 6" stroke={sauce} strokeWidth="8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 const VISUALS: Record<string, (props: VisualProps) => ReactElement> = {
-  "burger-01": (p) => <BurgerVisual {...p} />,
-  "burger-02": (p) => <CheeseBurgerVisual {...p} />,
-  "burger-03": (p) => <SmashBurgerVisual {...p} />,
-  "chicken-01": (p) => <ChickenVisual {...p} />,
-  "chicken-02": (p) => <WingsVisual {...p} />,
-  "tacos-01": (p) => <TacosVisual {...p} />,
-  "tacos-02": (p) => <TacosVisual {...p} chicken />,
-  "pizza-01": (p) => <PizzaVisual {...p} />,
-  "fries-01": (p) => <FriesVisual {...p} loaded />,
-  "fries-02": (p) => <FriesVisual {...p} />,
-  "combo-01": (p) => <ComboVisual {...p} />,
-  "combo-02": (p) => <ComboVisual {...p} />,
-  "drink-01": (p) => <SodaVisual {...p} />,
-  "drink-02": (p) => <ShakeVisual {...p} />,
-  "sauce-01": (p) => <SauceVisual {...p} />,
+  "brothers-classic": (p) => <BurgerVisual {...p} />,
+  "brothers-double": (p) => <CheeseBurgerVisual {...p} />,
+  "brothers-crispy": (p) => <ChickenVisual {...p} />,
+  "brothers-special": (p) => <SmashBurgerVisual {...p} />,
+  "crispy-chicken": (p) => <ChickenVisual {...p} />,
+  "chicken-tender": (p) => <WingsVisual {...p} />,
+  "brothers-chicken": (p) => <ChickenVisual {...p} />,
+  "the-brothers": (p) => <SmashBurgerVisual {...p} />,
+  "tasty-crusty-original": (p) => <CrustyVisual {...p} variant="original" />,
+  "tasty-crusty-cheese": (p) => <CrustyVisual {...p} variant="cheese" />,
+  "tasty-crusty-spicy": (p) => <CrustyVisual {...p} variant="spicy" />,
+  "tasty-crusty-brothers": (p) => <CrustyVisual {...p} variant="brothers" />,
 };
 
 export function FoodVisual({

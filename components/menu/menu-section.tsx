@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { PRODUCTS } from "@/data/products";
+import { getProductsByCategory } from "@/data/products";
+import type { MenuFilterId } from "@/data/categories";
 import type { Product } from "@/types";
 import CategoryTabs from "@/components/category-tabs/category-tabs";
 import ProductCard from "@/components/product-card/product-card";
@@ -18,12 +19,12 @@ export default function MenuSection({
   limit?: number;
   cinematic?: boolean;
 }) {
-  const [active, setActive] = useState<string>("burgers");
+  const [active, setActive] = useState<MenuFilterId>("all");
   const [selected, setSelected] = useState<Product | null>(null);
   const reduce = useReducedMotion();
 
   const items = useMemo(() => {
-    const filtered = PRODUCTS.filter((p) => p.category === active);
+    const filtered = getProductsByCategory(active);
     return limit ? filtered.slice(0, limit) : filtered;
   }, [active, limit]);
 
@@ -51,7 +52,7 @@ export default function MenuSection({
         </h2>
 
         <div className="mt-8 md:mt-10">
-          <CategoryTabs active={active} onChange={setActive} />
+          <CategoryTabs active={active} onChange={(id) => setActive(id as MenuFilterId)} />
         </div>
 
         <AnimatePresence mode="wait">

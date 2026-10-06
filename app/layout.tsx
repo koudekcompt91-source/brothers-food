@@ -17,12 +17,12 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-body" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: `${BRAND.name} — Good Food. Good Mood. Brothers.`,
+  title: `${BRAND.name} | Good Food. Good Mood.`,
   description:
-    "BROTHERS FOOD — bold fast food. Burgers, chicken, tacos, fries & combos. Good food, good mood, brothers.",
+    "Discover BROTHERS FOOD — burgers, sandwiches and our signature Tasty Crusty box.",
   openGraph: {
-    title: BRAND.name,
-    description: "Good Food. Good Mood. Brothers.",
+    title: `${BRAND.name} | Good Food. Good Mood.`,
+    description: "Discover BROTHERS FOOD — burgers, sandwiches and our signature Tasty Crusty box.",
     images: ["/logo.png"],
     type: "website",
   },

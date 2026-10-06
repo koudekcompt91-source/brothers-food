@@ -1,6 +1,4 @@
-export type CategoryId =
-  | "burgers" | "chicken" | "tacos" | "pizza"
-  | "fries" | "combos" | "drinks" | "sauces";
+export type CategoryId = "burgers" | "sandwiches" | "tasty-crusty";
 
 export interface Category {
   id: CategoryId;
@@ -9,11 +7,14 @@ export interface Category {
 
 export const CATEGORIES: Category[] = [
   { id: "burgers", label: "BURGERS" },
-  { id: "chicken", label: "CHICKEN" },
-  { id: "tacos", label: "TACOS" },
-  { id: "pizza", label: "PIZZA" },
-  { id: "fries", label: "FRIES" },
-  { id: "combos", label: "COMBOS" },
-  { id: "drinks", label: "DRINKS" },
-  { id: "sauces", label: "SAUCES" },
+  { id: "sandwiches", label: "SANDWICHES" },
+  { id: "tasty-crusty", label: "TASTY CRUSTY" },
 ];
+
+/** Menu filters. "all" is a view, not a stored product category. */
+export const MENU_FILTERS = [
+  { id: "all", label: "ALL" },
+  ...CATEGORIES,
+] as const;
+
+export type MenuFilterId = (typeof MENU_FILTERS)[number]["id"];

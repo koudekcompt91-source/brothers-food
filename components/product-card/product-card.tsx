@@ -56,6 +56,7 @@ export default function ProductCard({
 
   const quickAdd = (e: MouseEvent) => {
     e.stopPropagation();
+    if (product.available === false) return;
     addItem({ product, qty: 1, size: "regular", extras: [] });
     flyToCart((e.currentTarget as HTMLElement).getBoundingClientRect());
     setAdded(true);
@@ -95,9 +96,9 @@ export default function ProductCard({
           (featured ? "min-h-[460px] sm:min-h-[520px]" : "min-h-[420px]")
         }
       >
-        {product.popular && (
+        {(product.badge || product.popular) && (
           <span className="absolute left-3 top-3 z-10 bg-orange px-3 py-1 font-display text-[11px] tracking-widest text-black">
-            POPULAR
+            {product.badge ?? "POPULAR"}
           </span>
         )}
         <div
@@ -133,6 +134,7 @@ export default function ProductCard({
           </p>
           <button
             type="button"
+            disabled={product.available === false}
             onClick={quickAdd}
             className={
               "mt-4 inline-flex w-full items-center justify-center gap-2 py-3 font-display tracking-wide transition-all duration-300 " +

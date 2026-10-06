@@ -5,14 +5,12 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { getProductById } from "@/data/products";
 import { formatPrice } from "@/data/config";
 import { useCart } from "@/lib/cart";
-import { BurgerVisual, CheeseBit, FriesVisual, OnionBit, SauceBit } from "@/components/food/food-visuals";
+import { CheeseBit, FoodVisual, FriesVisual, OnionBit, SauceBit } from "@/components/food/food-visuals";
 import { useCanParallax } from "@/lib/use-can-parallax";
 import MagneticButton from "@/components/ui/magnetic-button";
 
-const NOTES = ["Double Beef", "Special Brothers Sauce", "Cheese"];
-
 export default function FeaturedProduct() {
-  const product = getProductById("burger-01");
+  const product = getProductById("brothers-classic");
   const { addItem, openCart } = useCart();
   const reduce = useReducedMotion();
   const parallax = useCanParallax();
@@ -63,8 +61,9 @@ export default function FeaturedProduct() {
               animate={reduce ? undefined : { y: [0, -10, 0], rotate: [-6, -3, -6] }}
               transition={reduce ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
-              <BurgerVisual
-                label="Brothers Burger"
+              <FoodVisual
+                id={product.id}
+                label={product.name}
                 className="relative z-10 mx-auto h-auto w-[88%] drop-shadow-[0_40px_50px_rgba(0,0,0,0.55)]"
               />
             </motion.div>
@@ -72,19 +71,11 @@ export default function FeaturedProduct() {
         </div>
 
         <motion.div style={reduce ? undefined : { y: textY }} className="relative z-10">
-          <p className="font-display text-xs tracking-[0.32em] text-orange">THE ONE</p>
-          <h2 className="headline mt-3 text-[clamp(3.2rem,7vw,6.5rem)] leading-[0.86] text-white">
-            BROTHERS
-            <br />
-            <span className="text-orange">BURGER</span>
+          <p className="font-display text-xs tracking-[0.32em] text-orange">BROTHERS FAVORITE</p>
+          <h2 className="headline mt-3 text-[clamp(2.8rem,6vw,5.5rem)] leading-[0.86] text-white">
+            {product.name}
           </h2>
-          <ul className="mt-6 flex flex-col gap-2">
-            {NOTES.map((note) => (
-              <li key={note} className="font-display text-lg tracking-wide text-white/80 md:text-2xl">
-                {note}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-5 max-w-md text-lg text-white/70">{product.description}</p>
           <p className="mt-6 font-display text-4xl text-orange md:text-5xl">{formatPrice(product.price)}</p>
           <MagneticButton onClick={order} className="mt-8 bg-orange px-8 py-4 text-base text-black hover:bg-white">
             ORDER NOW

@@ -54,15 +54,8 @@ export default function AboutSection() {
             </h2>
           </Reveal>
           <Reveal variant="up" delay={0.15}>
-            <p className="mt-6 text-black/80 text-lg leading-relaxed max-w-lg">
-              {/* Placeholder brand story — replace with the real one */}
-              It started with two brothers, one grill, and a simple idea: make fast food
-              the way it should be — bold, honest, and made with love. Every recipe is
-              ours, every sauce is signature, every order is personal. This isn't just a
-              restaurant. It's family.
-            </p>
-            <p className="mt-4 font-display text-black tracking-widest text-sm">
-              [ PLACEHOLDER STORY — EDIT IN components/about/about-section.tsx ]
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-black/80">
+              Simple food. Bold flavors. Made for people who love good food.
             </p>
           </Reveal>
         </div>

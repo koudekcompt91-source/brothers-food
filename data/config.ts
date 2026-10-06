@@ -36,7 +36,7 @@ export const NAV_LINKS = [
 ] as const;
 
 export const MARQUEE_ITEMS = [
-  "BROTHERS FOOD", "BURGERS", "CHICKEN", "TACOS", "FRIES", "COMBOS",
+  "BROTHERS FOOD", "BURGERS", "SANDWICHES", "TASTY CRUSTY",
 ] as const;
 
 export function formatPrice(price: number): string {

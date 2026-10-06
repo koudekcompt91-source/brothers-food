@@ -1,7 +1,7 @@
 "use client";
 
 import { LayoutGroup, motion } from "framer-motion";
-import { CATEGORIES } from "@/data/categories";
+import { MENU_FILTERS } from "@/data/categories";
 
 interface CategoryTabsProps {
   active: string;
@@ -16,7 +16,7 @@ export default function CategoryTabs({ active, onChange }: CategoryTabsProps) {
         role="tablist"
         aria-label="Menu categories"
       >
-        {CATEGORIES.map((c) => {
+        {MENU_FILTERS.map((c) => {
           const isActive = active === c.id;
           return (
             <button
@@ -25,7 +25,7 @@ export default function CategoryTabs({ active, onChange }: CategoryTabsProps) {
               aria-selected={isActive}
               onClick={() => onChange(c.id)}
               className={
-                "relative shrink-0 overflow-hidden border px-5 py-2.5 font-display text-sm tracking-wide transition-colors duration-200 " +
+                "relative min-h-11 shrink-0 overflow-hidden border px-5 py-3 font-display text-sm tracking-wide transition-colors duration-200 " +
                 (isActive ? "border-orange text-black" : "border-white/15 text-white/70 hover:border-orange hover:text-white")
               }
             >

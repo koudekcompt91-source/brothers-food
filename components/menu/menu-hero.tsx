@@ -79,7 +79,9 @@ export default function MenuHero() {
             transition={{ delay: 0.15, duration: 0.5 }}
             className="mt-5 max-w-md text-lg text-black/80 md:text-xl"
           >
-            Choose your favorites, stack the extras, and order the way the brothers make it.
+            BOLD FLAVORS.
+            <br />
+            BROTHERS STYLE.
           </motion.p>
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 18 }}

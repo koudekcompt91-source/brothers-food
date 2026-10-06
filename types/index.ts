@@ -9,6 +9,9 @@ export interface Product {
   image: string;
   /** Set true after replacing the placeholder with a real photo at `image`. */
   usePhoto?: boolean;
+  featured?: boolean;
+  badge?: string;
+  available?: boolean;
   popular?: boolean;
   ingredients?: string[];
 }
