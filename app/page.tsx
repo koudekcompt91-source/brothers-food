@@ -7,11 +7,14 @@ import AboutSection from "@/components/about/about-section";
 import StoryScroll from "@/components/story/story-scroll";
 import Testimonials from "@/components/testimonials/testimonials";
 import InstagramSection from "@/components/social/instagram-section";
+import { HERO_BURGER_PATH, readPublicImage } from "@/lib/public-asset";
 
 export default function HomePage() {
+  const burgerImage = readPublicImage(HERO_BURGER_PATH);
+
   return (
     <>
-      <Hero />
+      <Hero burgerImage={burgerImage} />
       <Marquee />
       <Favorites />
       <TastyCrustySection />

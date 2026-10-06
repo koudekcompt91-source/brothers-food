@@ -7,10 +7,15 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, Menu as MenuIcon, X } from "lucide-react";
 import { NAV_LINKS, BRAND } from "@/data/config";
+import type { PublicImage } from "@/lib/public-asset";
 import { useCart } from "@/lib/cart";
 import MagneticButton from "@/components/ui/magnetic-button";
 
-export default function Navbar() {
+export default function Navbar({
+  logo = { src: BRAND.logo, width: 1024, height: 1280 },
+}: {
+  logo?: PublicImage;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { count, openCart, lastAddedAt } = useCart();
@@ -40,10 +45,15 @@ export default function Navbar() {
       >
         <nav className="mx-auto max-w-shell px-5 md:px-10 h-[72px] flex items-center justify-between">
           <Link href="/" aria-label={BRAND.name} className="flex items-center gap-3">
-            <span className="relative block w-9 h-9 overflow-hidden rounded-sm">
-              <Image src={BRAND.logo} alt="" fill sizes="36px" className="object-cover" />
-            </span>
-            <span className="headline text-white text-lg md:text-xl">BROTHERS FOOD</span>
+            <Image
+              src={logo.src}
+              alt=""
+              width={logo.width}
+              height={logo.height}
+              className="h-11 w-auto bg-transparent object-contain sm:h-12"
+              style={{ width: "auto", height: "2.75rem" }}
+            />
+            <span className="headline text-lg text-white md:text-xl">BROTHERS FOOD</span>
           </Link>
 
           <ul className="hidden md:flex items-center gap-8">

@@ -3,6 +3,7 @@ import { Anton, Manrope } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart";
 import { BRAND, RESTAURANT } from "@/data/config";
+import { LOGO_TRANSPARENT_PATH, readPublicImage } from "@/lib/public-asset";
 import Preloader from "@/components/preloader/preloader";
 import CustomCursor from "@/components/cursor/custom-cursor";
 import ScrollProgress from "@/components/ui/scroll-progress";
@@ -51,6 +52,9 @@ const structuredData = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const transparentLogo = readPublicImage(LOGO_TRANSPARENT_PATH);
+  const logo = transparentLogo ?? { src: BRAND.logo, width: 1024, height: 1280 };
+
   return (
     <html lang="en" className={`${anton.variable} ${manrope.variable}`}>
       <body className="grain custom-cursor-active">
@@ -62,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Preloader />
           <CustomCursor />
           <ScrollProgress />
-          <Navbar />
+          <Navbar logo={logo} />
           <main>{children}</main>
           <Footer />
           <CartDrawer />
